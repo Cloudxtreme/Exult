@@ -52,10 +52,13 @@ using Metrowerks::hash_map;
 #endif
 #endif
 
+#if (__cplusplus >= 201103L)
+#include <unordered_set>
+using std::unordered_set;
+#else
 #ifdef DONT_HAVE_HASH_SET
 #  include <set>
 #else
-	
 #  if defined(HAVE_TR1_UNORDERED_SET) && defined(__GNUC__) && (__GNUC__ >= 4) && ( __GNUC_MINOR__ >= 3)
 #    include <tr1/unordered_set>
 using std::tr1::unordered_set;
@@ -76,6 +79,7 @@ using Metrowerks::hash_set;
 #define unordered_set hash_set
 #  endif
 #endif
+#endif //C++11
 
 
 #if defined(DONT_HAVE_HASH_MAP) && defined(DONT_HAVE_HASH_SET)
