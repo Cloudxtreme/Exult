@@ -23,6 +23,10 @@
 
 #include <cstring>
 
+#if (__cplusplus >= 201103L)
+#include <unordered_map>
+using std::unordered_map;
+#else
 #ifdef DONT_HAVE_HASH_MAP
 #  include <map>
 #else
@@ -45,6 +49,7 @@ using std::hash_map;
 using Metrowerks::hash_map;
 #    define unordered_map hash_map
 #  endif
+#endif
 #endif
 
 #ifdef DONT_HAVE_HASH_SET
