@@ -179,6 +179,7 @@ void Game_window::restore_gamedat(
     const char *fname       // Name of savegame file.
 ) {
 	// Check IDENTITY.
+	// TODO try deallocating id
 	const char *id = get_game_identity(fname);
 	const char *static_identity = get_game_identity(INITGAME);
 	// Note: "*" means an old game.
@@ -187,6 +188,8 @@ void Game_window::restore_gamedat(
 		msg += id;
 		msg += "'.  Open anyway?";
 		int ok = Yesno_gump::ask(msg.c_str());
+		FORGET_OBJECT(id);
+		//TODO check if it can be avoided by using std::string instead of raw pointer
 		if (!ok)
 			return;
 	}
